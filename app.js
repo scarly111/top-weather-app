@@ -21,11 +21,16 @@ const getData = async () => {
         const date2 = "2024-04-07";
 
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date1}/${date2}?key=${apiKey}`)
+
+        if(!response.ok){
+            throw new Error(`HTTP error: ${response.status}`)
+        }
+
         const data = await response.json()
         console.log(data)
-        
+
     } catch (err) {
-        console.error(err)
+        console.error('Error fethcing weather data', err)
     }
 }
 
