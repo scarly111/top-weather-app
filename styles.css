@@ -1,0 +1,10 @@
+body {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    margin: 1.1rem;
+    background-color: #e9e2cf;
+}
+
+.weather-info {
+    text-align: center;
+}
