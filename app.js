@@ -66,4 +66,12 @@ const getData = async (city) => {
     }
 }
 
-getData()
+const displayWeather = (info) => {
+    const resultDiv = document.getElementById('weatherInfo')
+    resultDiv.innerHTML = `
+        <h2>Weather in ${info.city} on ${info.date}</h2>
+        <p>Max Temp: ${info.maxTemp}°C</p>
+        <p>Min Temp: ${info.minTemp}°C</p>
+        <p>Summary: ${info.summary}</p>
+    `
+}
