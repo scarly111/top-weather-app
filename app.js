@@ -50,7 +50,7 @@ const getData = async (city) => {
 
         const date = getCurrentDate()
 
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date}/${date}?key=${apiKey}`)
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${date}/${date}?key=${apiKey}`)
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`)
@@ -59,7 +59,7 @@ const getData = async (city) => {
         const data = await response.json()
         const weatherInfo = weatherFactory(data)
 
-        console.log(weatherInfo)
+        displayWeather(weatherInfo)
 
     } catch (err) {
         console.error('Error fethcing weather data', err)
@@ -75,3 +75,9 @@ const displayWeather = (info) => {
         <p>Summary: ${info.summary}</p>
     `
 }
+
+document.getElementById('weatherForm').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const city = document.getElementById('cityInput').value
+    getData(city)
+})
