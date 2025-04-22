@@ -10,6 +10,20 @@
 
 const apiKey = '3XBBSAHBCG7N3NMAHR93NMPUE'
 
+// Factory function for specific weather data
+const weatherFactory = (data) => {
+    const { address, days } = data
+    const { datetime, tempmax, tempmin, conditions } = days[0]
+
+    return {
+        city: address,
+        date: datetime,
+        maxTemp: tempmax,
+        minTemp: tempmin,
+        summary: conditions
+    }
+}
+
 
 const getCurrentDate = () => {
     const today = new Date()
@@ -17,28 +31,35 @@ const getCurrentDate = () => {
     return formattedData
 }
 
+// For console
 
-const getCityInput = () => {
+/* const getCityInput = () => {
     let city = prompt('enter a city')
     return city
-}
+} */
 
-const getData = async () => {
+const getData = async (city) => {
     try {
 
+        // For console
+        /*
         const location = getCityInput()
         const date1 = getCurrentDate()
         const date2 = getCurrentDate()
+        */
 
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date1}/${date2}?key=${apiKey}`)
+        const date = getCurrentDate()
+
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date}/${date}?key=${apiKey}`)
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`)
         }
 
         const data = await response.json()
+        const weatherInfo = weatherFactory(data)
 
-        console.log(data)
+        console.log(weatherInfo)
 
     } catch (err) {
         console.error('Error fethcing weather data', err)
