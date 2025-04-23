@@ -96,4 +96,10 @@ document.getElementById('unitToggle').addEventListener('click', () => {
     useCelsius = !useCelsius
     const btn = document.getElementById('unitToggle')
     btn.textContent = useCelsius ? 'Switch to °F' : 'Switch to °C'
+
+    // If there are some date, resend
+    const currentCity = document.getElementById('cityInput').value
+    if (currentCity) {
+        getData(currentCity)
+    }
 })
