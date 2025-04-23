@@ -70,8 +70,8 @@ const displayWeather = (info) => {
     const resultDiv = document.getElementById('weatherInfo')
     resultDiv.innerHTML = `
         <h2>Weather in ${info.city} on ${info.date}</h2>
-        <p>Max Temp: ${info.maxTemp}°C</p>
-        <p>Min Temp: ${info.minTemp}°C</p>
+        <p>Max Temp: ${info.maxTemp}°F</p>
+        <p>Min Temp: ${info.minTemp}°F</p>
         <p>Summary: ${info.summary}</p>
     `
 }
