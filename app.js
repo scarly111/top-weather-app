@@ -91,3 +91,9 @@ document.getElementById('weatherForm').addEventListener('submit', (e) => {
     const city = document.getElementById('cityInput').value
     getData(city)
 })
+
+document.getElementById('unitToggle').addEventListener('click', () => {
+    useCelsius = !useCelsius
+    const btn = document.getElementById('unitToggle')
+    btn.textContent = useCelsius ? 'Switch to °F' : 'Switch to °C'
+})
