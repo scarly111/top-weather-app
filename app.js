@@ -10,6 +10,8 @@
 
 const apiKey = '3XBBSAHBCG7N3NMAHR93NMPUE'
 
+let useCelsius = false
+
 // Factory function for specific weather data
 const weatherFactory = (data) => {
     const { address, days } = data
@@ -66,12 +68,20 @@ const getData = async (city) => {
     }
 }
 
+// Converting operation
+const convertToCelsius = (f) => ((f - 32) * 5 / 9).toFixed(1)
+
 const displayWeather = (info) => {
+
     const resultDiv = document.getElementById('weatherInfo')
+    const unit = useCelsius ? '°C' : '°F'
+    const maxTemp = useCelsius ? convertToCelsius(info.maxTemp) : info.maxTemp
+    const minTemp = useCelsius ? convertToCelsius(info.minTemp) : info.minTemp
+
     resultDiv.innerHTML = `
         <h2>Weather in ${info.city} on ${info.date}</h2>
-        <p>Max Temp: ${info.maxTemp}°F</p>
-        <p>Min Temp: ${info.minTemp}°F</p>
+        <p>Max Temp: ${maxTemp}${unit}</p>
+        <p>Min Temp: ${minTemp}${unit}</p>
         <p>Summary: ${info.summary}</p>
     `
 }
